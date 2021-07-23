@@ -1,6 +1,5 @@
 package schedulingPersonal.com.br.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import schedulingPersonal.com.br.models.User;
 import schedulingPersonal.com.br.repository.UserRepository;
@@ -16,11 +15,13 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+
+        return userRepository.findAll();
     }
 
-    public User addUser(User user) {
-        userRepository.save(user);
-        return user;
+    public User save(User user) {
+            return userRepository.save(user);
+
     }
+
 }
