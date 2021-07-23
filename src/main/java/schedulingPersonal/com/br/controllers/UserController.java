@@ -1,29 +1,34 @@
 package schedulingPersonal.com.br.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import schedulingPersonal.com.br.DTOs.UserDTO;
 import schedulingPersonal.com.br.models.User;
 import schedulingPersonal.com.br.services.UserService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/users")
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+    @GetMapping()
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public User addUser(@RequestBody User user) {
-        userService.addUser(user);
-        return user;
+    @PostMapping()
+    public User  create(@RequestBody User user){
+        User obj;
+
+        obj = user;
+
+        return userService.save(obj);
     }
 }

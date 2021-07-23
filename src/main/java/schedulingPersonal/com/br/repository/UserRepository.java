@@ -1,7 +1,13 @@
 package schedulingPersonal.com.br.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import schedulingPersonal.com.br.models.User;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByStatus(boolean status);
+    List<User> findByName(String name);
+
+
 }

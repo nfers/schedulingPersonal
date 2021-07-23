@@ -1,38 +1,16 @@
-package schedulingPersonal.com.br.models;
+package schedulingPersonal.com.br.DTOs;
 
-import javax.persistence.*;
+public class UserDTO {
+     Long  id;
+     String name;
+     String positions;
+     String phone;
 
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  id;
-    private String name;
-    private String positions;
-    private String phone;
-    private String email;
-    private Boolean status;
-
-    public User() {
-
-    }
-
-    public User(Long id, String name, String positions, String phone, String email, Boolean status) {
-        this.id = id;
-        this.name = name;
-        this.positions = positions;
-        this.phone = phone;
-        this.email = email;
-        this.status = status;
-    }
-
-    public Long  getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long  id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -73,6 +51,18 @@ public class User {
     }
 
     public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    String email;
+     Boolean status;
+
+    public UserDTO(Long id, String name, String positions, String phone, String email, Boolean status) {
+        this.id = id;
+        this.name = name;
+        this.positions = positions;
+        this.phone = phone;
+        this.email = email;
         this.status = status;
     }
 }
