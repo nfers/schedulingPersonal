@@ -1,7 +1,10 @@
 package schedulingPersonal.com.br.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -15,11 +18,8 @@ public class User {
     private String email;
     private Boolean status = false;
 
-    public User() {
-
-    }
-
-    public User(String name, String positions, String phone, String email, Boolean status) {
+    public User(Long id, String name, String positions, String phone, String email, Boolean status) {
+        this.id = id;
         this.name = name;
         this.positions = positions;
         this.phone = phone;
@@ -65,5 +65,13 @@ public class User {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

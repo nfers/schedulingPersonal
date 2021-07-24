@@ -1,7 +1,10 @@
 package schedulingPersonal.com.br.DTOs;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import schedulingPersonal.com.br.models.User;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDTO {
 
      Long  id;
@@ -52,6 +55,11 @@ public class UserDTO {
     }
 
     public User transformToObject() {
-        return new User(name, positions,  phone, email,  status);
+        return new User(id, name, positions,  phone, email,  status);
     }
+
+    /*public static UserDTO transformToObject(User user) {
+        return new UserDTO(user.id, user.name, user.positions,  user.phone, user.email,  user.status);
+    }*/
+
 }

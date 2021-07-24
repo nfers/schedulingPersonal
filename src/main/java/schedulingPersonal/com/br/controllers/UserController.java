@@ -18,17 +18,21 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping()
     public List<User> findAll() {
         return userService.findAll();
     }
 
     @PostMapping()
-    public User  create(@RequestBody User user){
-        User obj;
+    public ResponseEntity<User>  create(@RequestBody UserDTO user){
+        try {
+            User newUser = userService.save(user.transformToObject());
 
-        obj = user;
-
-        return userService.save(obj);
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        } catch (Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
