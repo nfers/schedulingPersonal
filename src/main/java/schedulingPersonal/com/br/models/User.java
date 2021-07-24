@@ -13,27 +13,18 @@ public class User {
     private String positions;
     private String phone;
     private String email;
-    private Boolean status;
+    private Boolean status = false;
 
     public User() {
 
     }
 
-    public User(Long id, String name, String positions, String phone, String email, Boolean status) {
-        this.id = id;
+    public User(String name, String positions, String phone, String email, Boolean status) {
         this.name = name;
         this.positions = positions;
         this.phone = phone;
         this.email = email;
         this.status = status;
-    }
-
-    public Long  getId() {
-        return id;
-    }
-
-    public void setId(Long  id) {
-        this.id = id;
     }
 
     public String getName() {
