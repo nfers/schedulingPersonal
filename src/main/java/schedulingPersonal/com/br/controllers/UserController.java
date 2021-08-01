@@ -13,6 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/users")
 public class UserController {
+
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -27,12 +28,25 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<User>  create(@RequestBody UserDTO user){
         try {
-            User newUser = userService.save(user.transformToObject());
+            User newUser;
+            newUser = userService.save(user.transformToObject());
 
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         } catch (Exception e)
         {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteId(@PathVariable("id") Long id)   {
+
+        boolean status  = userService.delete(id);
+
+        if(status) {
+            return new ResponseEntity<>("No User found to delete for ID " + id, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>("Deleted user for ID: " + id, HttpStatus.NOT_FOUND);
         }
     }
 }

@@ -22,6 +22,15 @@ public class UserService {
     }
 
     public User save(User user) {
-            return userRepository.save(user);
+        return userRepository.save(user);
+    }
+
+    public boolean delete(Long id) {
+
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
